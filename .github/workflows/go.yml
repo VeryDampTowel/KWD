@@ -28,8 +28,7 @@ jobs:
     - name: Install dependencies
       run: |
         go get .
-        go get modernc.org/sqlite v1.27.0
-        
+        go get modernc.org/sqlite
 
   #  - name: Build
   #   run: go build -v ./...
