@@ -4,9 +4,8 @@
 name: Go
 
 on:
+  pull_request:
   push:
-    tags:
-      - 'v*'
   workflow_dispatch:
 
 
@@ -15,7 +14,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
@@ -26,11 +28,11 @@ jobs:
         go get .
         go get github.com/mattn/go-sqlite3
 
-    - name: Build
-      run: go build -v ./...
+  #  - name: Build
+  #   run: go build -v ./...
 
     - name: Run GoReleaser
-      uses: goreleaser/goreleaser-action@master
+      uses: goreleaser/goreleaser-action@v5
       with:
         version: latest
         args: release --clean
