@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 		log.Fatalf("Error: File %s does not exist!", inputFile)
 	}
 
-	db, err := sql.Open("sqlite3", inputFile)
+	db, err := sql.Open("sqlite", inputFile)
 	if err != nil {
 		log.Fatal(err)
 	}
